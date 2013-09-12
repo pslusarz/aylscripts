@@ -36,6 +36,9 @@ echo "" >> $build_file
 echo "dependencies {" >> $build_file
 echo "  compile 'org.codehaus.groovy:groovy-all:2.1.7'" >> $build_file
 echo "}" >> $build_file
+echo "task wrapper(type: Wrapper) {" >> $build_file
+echo "  gradleVersion = '1.6'" >> $build_file
+echo "}" >> $build_file
 
 gitignore_file="$project_name/.gitignore"
 echo ".gradle/" >> $gitignore_file
@@ -44,6 +47,8 @@ echo "build/" >> $gitignore_file
 echo "*.iml" >> $gitignore_file
 echo "*.ipr" >> $gitignore_file
 echo "*.iws" >> $gitignore_file
+echo ".idea/" >> $gitignore_file
+echo "classes/" >> $gitignore_file
 #eclipse project files
 echo ".settings/" >> $gitignore_file
 echo ".classpath" >> $gitignore_file
