@@ -1,0 +1,67 @@
+<html>
+<head>
+<script>
+function search() {
+  var url = document.getElementById("url").value
+  var numberOfImages = 50
+  var isRia = false;
+  if (url.indexOf("www.rockislandauction.com/detail/") > -1) {
+    isRia = true;
+  }
+  var urlChunks = url.split("/");
+  var auction = urlChunks[4];
+  var item = urlChunks[5];
+  var display = document.getElementById('display');
+  while (display.firstChild) {
+    display.removeChild(display.firstChild);
+  }
+  var div = document.createElement("div");
+  div.appendChild(document.createTextNode("is RIA: "+isRia));
+  display.appendChild(div);
+  div = document.createElement("div");
+  div.appendChild(document.createTextNode("auction: "+urlChunks[4]));
+  display.appendChild(div);
+  div = document.createElement("div");
+  div.appendChild(document.createTextNode("item: "+urlChunks[5]));
+  display.appendChild(div);
+
+  var i;
+  for (i = 0; i < numberOfImages; i++) {
+    pushInvisibleImage(display, i, auction, item);
+  }
+}
+  function pushInvisibleImage(display, index, auction, item) {
+    var p = document.createElement("p");
+    p.style.display = "none"
+    p.id = "link_img_"+auction+"_item_"+item+"_"+index;
+    var a = document.createElement("a");
+    var imgUrl = "https://www.rockislandauction.com/html/dev_cdn/"+auction+"/"+item+"-"+index+".jpg";
+    if (index == 0) {
+      imgUrl = "https://www.rockislandauction.com/html/dev_cdn/"+auction+"/"+item+".jpg";
+    }
+      a.href = imgUrl;
+
+    a.download = "auction_"+auction+"_item_"+item+"_"+index+".jpg";
+    var img = document.createElement("img");
+    img.id = "img_"+auction+"_item_"+item+"_"+index;
+    img.src = imgUrl;
+    img.width = "320";
+    img.addEventListener("load", function(event){
+        document.getElementById("link_"+event.target.id).style.display = "block";
+        });
+    a.appendChild(img);
+    p.appendChild(a);
+    display.appendChild(p);
+  }
+  </script>
+  </head>
+  <body>
+<form onsubmit="return false">
+<input type="text" alt="Enter RIA URL" size="128" name="url" id="url" placeholder="Enter RIA Auction Url, ie: https://www.rockislandauction.com/detail/64/1585/fabrique-nationale-1900-pistol-32-acp">
+<br>
+<button onclick="search()">Submit</button>
+  </form>
+  <div id="display">
+    </div>
+    </body>
+</html>
