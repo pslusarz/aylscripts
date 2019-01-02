@@ -34,10 +34,10 @@ echo "  mavenCentral()" >> $build_file
 echo "}" >> $build_file
 echo "" >> $build_file
 echo "dependencies {" >> $build_file
-echo "  compile 'org.codehaus.groovy:groovy-all:2.1.7'" >> $build_file
+echo "  compile 'org.codehaus.groovy:groovy-all:2.4.11'" >> $build_file
 echo "}" >> $build_file
 echo "task wrapper(type: Wrapper) {" >> $build_file
-echo "  gradleVersion = '1.6'" >> $build_file
+echo "  gradleVersion = '4.0.1'" >> $build_file
 echo "}" >> $build_file
 
 gitignore_file="$project_name/.gitignore"
